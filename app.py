@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+import os
 from flask import Flask, request, jsonify
 from flask_pymongo import PyMongo
 from flask_cors import CORS
@@ -6,8 +6,9 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 print("hello")
+
 # Cấu hình kết nối MongoDB
-app.config["MONGO_URI"] = "mongodb://localhost:27017/students"
+app.config["MONGO_URI"] = "mongodb+srv://darkun:127621176@cluster0.evyjvx5.mongodb.net/"
 mongo = PyMongo(app)
 
 @app.route('/api/data', methods=['GET'])
@@ -25,8 +26,7 @@ def add_data():
     mongo.db.student.insert_one(data)
     return jsonify(message="Data added successfully"), 201
 
-# if __name__ == '__main__':
-#     app.run(debug=True)
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port, debug=True)
+    port = os.environ.get("PORT", "5000")  # Chuyển đổi giá trị thành chuỗi
+    print(f"Running on port {port}")  # In giá trị cổng ra để kiểm tra
+    app.run(host='0.0.0.0', port=int(port), debug=True)
