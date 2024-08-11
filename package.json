@@ -11,6 +11,7 @@
   "dependencies": {
     "@material-tailwind/html": "^2.2.2",
     "axios": "^1.7.3",
+    "firebase": "^10.12.5",
     "khong-dau": "^2.0.0",
     "swiper": "^11.1.5",
     "vietnamese-slug": "^1.1.4",
