@@ -8,7 +8,7 @@ CORS(app)
 print("hello")
 
 # Cấu hình kết nối MongoDB
-app.config["MONGO_URI"] = "mongodb+srv://darkun:127621176@cluster0.evyjvx5.mongodb.net/"
+app.config["MONGO_URI"] = "mongodb+srv://darkun:127621176@cluster0.evyjvx5.mongodb.net/students?retryWrites=true&w=majority"
 mongo = PyMongo(app)
 
 @app.route('/api/data', methods=['GET'])
