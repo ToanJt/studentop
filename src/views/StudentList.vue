@@ -3,6 +3,7 @@ import { ref, computed, onMounted, watch, watchEffect, reactive, onBeforeMount }
 import KhongDau from "khong-dau";
 import StudentCard from "../components/StudentCard.vue"
 import { getData } from '../server/api'
+import { Icon } from "@iconify/vue"
 const students = reactive([]);
 
 
@@ -49,15 +50,36 @@ const studentsFilter = computed(() => {
     return students;
 })
 
+//Show filter 
+const isFilter = ref(false);
+
+function showFilterForm() {
+    isFilter.value = !isFilter.value;
+}
+
+function closeFilterForm() {
+    isFilter.value = false;
+}
+
 
 
 </script>
 
 <template>
-    <div class=" grid grid-cols-7 gap-20 mt-40">
-        <div class="filter-box h-[540px] sticky top-40 bg-white text-primary py-4 px-6 col-span-2 rounded">
+
+    <div class=" grid lg:grid-cols-7 grid-cols-1 gap-20 mt-40">
+        <div @click="showFilterForm()" class=" w-14 h-14 flex justify-center items-center rounded-full bg-primary">
+            <Icon icon="mynaui:filter" width="2em" height="2em" style="color: white" />
+        </div>
+        <div v-if="isFilter"
+            class="filter-box 2xl:h-[540px] lg:h-[680px] h-[520px] fixed top-40 bg-white text-primary py-4 px-6 2xl:col-span-2 col-span-3 rounded">
             <div class="">
-                <h3 class="mb-8 text-xl font-semibold">Lọc sinh viên {{ filterByCourse }} </h3>
+                <div class="flex justify-between">
+                    <h3 class="mb-8 text-xl font-semibold">Lọc sinh viên {{ filterByCourse }} </h3>
+                    <div @click="closeFilterForm()">
+                        <Icon icon="ic:outline-close" width="2em" height="2em" style="color: red" />
+                    </div>
+                </div>
                 <div class="">
                     <div class="flex flex-col mb-6">
                         <label class="font-medium" for="by-name">Tìm kiếm theo <span class="text-blue-400">Họ
@@ -80,7 +102,7 @@ const studentsFilter = computed(() => {
                             class="bg-[#f5f5f5] mt-1 rounded p-3 text-sm outline-none "
                             placeholder="Nhập tên chuyên ngành..." type="text">
                     </div>
-                    <div class="flex gap-16 mb-8">
+                    <div class="flex 2xl:flex-row lg:flex-col flex-row 2xl:gap-16 gap-10 mb-8">
                         <div class="flex items-center">
                             <label class="font-medium" for="by-cohort"><span
                                     class="text-blue-400 mr-4">Khóa</span></label>
@@ -122,10 +144,9 @@ const studentsFilter = computed(() => {
             </div>
 
         </div>
-        <!-- <h1 class="text-black" v-for="(student, index) in studentsFilter" :key="index">{{ student.id }}</h1> -->
-        <div class=" w-full col-span-5 ">
+        <div class=" w-full 2xl:col-span-5 col-span-4 ">
             <h3 class="text-2xl text-primary font-bold mb-4">Danh sách sinh viên</h3>
-            <div class=" flex gap-8 flex-wrap ">
+            <div class="flex gap-8 flex-wrap ">
                 <div class="w-[272px] h-[376px]" v-for="(student, index) in studentsFilter" :key="index">
                     <router-link :to="'/student/' + student.id">
                         <StudentCard :student="student">

@@ -11,6 +11,11 @@ const toSearch = function () {
   localStorage.setItem('searchValue', searchValue.value);
 }
 
+const showOption = ref(false);
+function toggleOptionHandle(params) {
+  showOption.value = !showOption.value;
+}
+
 </script>
 
 <template>
@@ -20,17 +25,37 @@ const toSearch = function () {
       <nav class="flex items-center justify-between">
         <div class="flex items-center gap-24">
           <div class="flex items-center gap-8">
-            <Icon icon="fe:bar" width="2.2em" height="2.2em" style="color: #6B7A99" />
+            <Icon @click="toggleOptionHandle()" class="md:hidden block" icon="fe:bar" width="2.2em" height="2.2em"
+              style="color: #6B7A99" />
             <RouterLink class="text-primary text-2xl font-black" to="/">Studentop</RouterLink>
           </div>
-          <div class="flex items-center gap-16">
-            <RouterLink class=" font-semibold" to="/">Trang chủ</RouterLink>
-            <RouterLink class=" font-semibold" to="/student-list">Danh sách sinh viên</RouterLink>
-
+          <div class="md:block hidden">
+            <RouterLink class="mr-16 md:text-base text-2xl md:mt-0 mt-40 md:text-black text-white  font-semibold"
+              to="/">
+              Trang chủ
+            </RouterLink>
+            <RouterLink class=" md:text-base text-2xl  md:text-black text-white  font-semibold" to="/student-list">Danh
+              sách sinh viên
+            </RouterLink>
+          </div>
+          <div v-if="showOption"
+            class="flex md:flex-row flex-col md:relative fixed top-0 right-0 bottom-0 left-0 md:bg-transparent bg-primary items-center gap-16">
+            <Icon @click="toggleOptionHandle()" class=" absolute left-14 top-8" icon="material-symbols:close"
+              width="3em" height="3em" style="color: white" />
+            <RouterLink @click="toggleOptionHandle(false)"
+              class=" md:text-base text-2xl md:mt-0 mt-40 md:text-black text-white  font-semibold" to="/">
+              Trang chủ
+            </RouterLink>
+            <RouterLink @click="toggleOptionHandle(false)"
+              class=" md:text-base text-2xl  md:text-black text-white  font-semibold" to="/student-list">Danh
+              sách sinh viên
+            </RouterLink>
+            <RouterLink class=" md:hidden block md:text-base text-white text-2xl  font-semibold" to="/login">Đăng nhập
+            </RouterLink>
           </div>
         </div>
         <div class="flex items-center">
-          <form @submit.prevent="toSearch" action="/student-list" class="mr-16 flex items-center">
+          <form @submit.prevent="toSearch" action="/student-list" class=" mr-16 2xl:flex hidden items-center">
             <label for="search">
               <Icon class="" icon="fluent:search-16-filled" width="1.4em" height="1.4em" style="color: #6B7A99" />
             </label>
@@ -38,7 +63,7 @@ const toSearch = function () {
               placeholder="Tìm kiếm sinh viên..." id="search" type="text">
             <button type="submit" class="bg-primary py-1 px-2 rounded text-white ">Tìm kiếm</button>
           </form>
-          <RouterLink class=" font-semibold" to="/login">Đăng nhập</RouterLink>
+          <RouterLink class="md:block hidden font-semibold" to="/login">Đăng nhập</RouterLink>
         </div>
       </nav>
     </div>

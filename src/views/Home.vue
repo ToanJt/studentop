@@ -63,18 +63,18 @@ const students = [
 </script>
 <template>
     <div class="mt-40">
-        <div class="grid grid-cols-2 gap-20 text-primary mb-80">
+        <div class="grid lg:grid-cols-2 grid-cols-1 gap-20 text-primary mb-80">
             <div class=" col-span-1">
-                <h3 class="text-2xl font-semibold mb-4">Khoa Công nghệ thông tin</h3>
-                <h1 class="text-5xl font-semibold mb-6">Đại học Khoa học Huế</h1>
-                <p class="text-xl text-secondary mb-2">
+                <h3 class="text-base font-semibold mb-4 sm:text-2xl">Khoa Công nghệ thông tin</h3>
+                <h1 class="text-2xl font-semibold mb-6 sm:text-5xl">Đại học Khoa học Huế</h1>
+                <p class="text-base text-secondary mb-2">
 
                     Là một trong những khoa đào tạo Công nghệ thông tin hàng đầu cả nước
                     về quy mô đào tạo và nghiên cứu khoa học, với đội ngũ giảng viên uy tín
                     gồm 5 phó giáo sư, 9 tiến sĩ, 9 thạc sĩ và 2 trợ giảng.
 
                 </p>
-                <p class="text-xl text-secondary mb-8">
+                <p class="text-base text-secondary mb-8">
 
                     Khoa hiện nay có 02 ngành đào tạo đại học,
                     02 ngành đào tạo cao học và 01 ngành đào tạo tiến sĩ, hướng tới đào tạo học viên,
@@ -84,54 +84,55 @@ const students = [
                 <ul class="content__list text-secondary">
                     <li class="flex items-center gap-3 mb-4">
                         <Icon icon="charm:circle-tick" width="3em" height="3em" style="color: #4D5E80" />
-                        <span class="content__list-i text-xl font-medium">
+                        <span class="content__list-i sm:text-xl text-base font-medium">
                             Đào tạo cử nhân Công nghệ thông tin
                         </span>
                     </li>
                     <li class="flex items-center gap-3 mb-4">
                         <Icon icon="charm:circle-tick" width="3em" height="3em" style="color: #4D5E80" />
 
-                        <p class="content__list-i text-xl font-medium">
+                        <p class="content__list-i  sm:text-xl text-base font-medium">
                             Đào tạo cử nhân Kỹ thuật phần mềm (cơ chế đặc thù)
                         </p>
                     </li>
                     <li class="flex items-center gap-3 mb-4">
                         <Icon icon="charm:circle-tick" width="3em" height="3em" style="color: #4D5E80" />
 
-                        <p class="content__list-i text-xl font-medium">
+                        <p class="content__list-i  sm:text-xl text-base font-medium">
                             Đào tạo thạc sĩ Khoa học máy tính
                         </p>
                     </li>
                     <li class="flex items-center gap-3 mb-4">
                         <Icon icon="charm:circle-tick" width="3em" height="3em" style="color: #4D5E80" />
 
-                        <p class="content__list-i text-xl font-medium">
+                        <p class="content__list-i  sm:text-xl text-base font-medium">
                             Đào tạo thạc sĩ Quản lý công nghệ thông tin
                         </p>
                     </li>
                     <li class="flex items-center gap-3 mb-4">
                         <Icon icon="charm:circle-tick" width="3em" height="3em" style="color: #4D5E80" />
 
-                        <p class="content__list-i text-xl font-medium">
+                        <p class="content__list-i  sm:text-xl text-base font-medium">
                             Đào tạo tiến sĩ Khoa học máy tính
                         </p>
                     </li>
                 </ul>
             </div>
             <div class="relative">
-                <img class=" " src="/src/assets/images/img3.jpg" alt="">
+                <img class=" lg:mb-0 mb-48" src="/src/assets/images/img3.jpg" alt="">
                 <img class="h-80 absolute right-0 top-3/4" src="/src/assets/images/img1.jpg" alt="">
             </div>
         </div>
         <div class=" text-primary mb-16 flex flex-col items-center">
             <div class="flex items-center justify-center w-3/4 mb-4">
-                <div class="bg-primary col-span-2 w-full h-[1px]"></div>
+                <div class=" md:block hidden bg-primary col-span-2 w-full h-[1px]"></div>
                 <div class=" w-[1500px] flex items-center justify-center">
-                    <h1 class="text-3xl font-semibold px-1">Sinh viên tiêu biểu khoa CNTT</h1>
+                    <h1 class="xl:text-3xl lg:text-2xl text-xl font-semibold px-1 text-center">Sinh viên tiêu biểu khoa
+                        CNTT</h1>
                 </div>
-                <div class="col-span-2 bg-primary w-full h-[1px]"></div>
+                <div class=" md:block hidden col-span-2 bg-primary w-full h-[1px]"></div>
             </div>
-            <p class="max-w-7xl text-center text-xl">
+            <p class="max-w-7xl text-center lg:text-xl md:text-lg text-base">
                 Khoa Công nghệ Thông tin tự hào giới thiệu những sinh viên tiêu biểu, những ngôi sao sáng giá trong lĩnh
                 vực
                 học thuật và nghiên cứu. Các sinh viên này không chỉ xuất sắc trong học tập với điểm số vượt trội, mà
@@ -150,13 +151,49 @@ const students = [
             </p>
 
         </div>
-        <div class=" flex justify-center">
-            <div class="w-[101rem]">
-                <Swiper :modules="modules" @swiper="onSwiper()" navigation :slides-per-view="4">
+        <div class=" xl:flex hidden justify-center">
+            <div class="w-full">
+                <Swiper :modules="modules" @swiper="onSwiper()" :space-between="80" navigation :slides-per-view="4">
                     <SwiperSlide v-for="(student, index) in students" :key="index">
                         <HomeStudentCard :student="student"></HomeStudentCard>
                     </SwiperSlide>
                 </Swiper>
+            </div>
+        </div>
+        <div class="xl:hidden block">
+            <div class="lg:flex hidden justify-center">
+                <div class="w-full">
+                    <Swiper :modules="modules" @swiper="onSwiper()" :space-between="120" navigation
+                        :slides-per-view="3">
+                        <SwiperSlide v-for="(student, index) in students" :key="index">
+                            <HomeStudentCard :student="student"></HomeStudentCard>
+                        </SwiperSlide>
+                    </Swiper>
+                </div>
+            </div>
+
+
+            <div class="lg:hidden block">
+                <div class="md:flex hidden">
+                    <div class="w-full">
+                        <Swiper :modules="modules" @swiper="onSwiper()" :space-between="120" navigation
+                            :slides-per-view="2">
+                            <SwiperSlide v-for="(student, index) in students" :key="index">
+                                <HomeStudentCard :student="student"></HomeStudentCard>
+                            </SwiperSlide>
+                        </Swiper>
+                    </div>
+                </div>
+                <div class="md:hidden flex">
+                    <div class="w-full">
+                        <Swiper :modules="modules" @swiper="onSwiper()" :space-between="120" navigation
+                            :slides-per-view="1">
+                            <SwiperSlide v-for="(student, index) in students" :key="index">
+                                <HomeStudentCard :student="student"></HomeStudentCard>
+                            </SwiperSlide>
+                        </Swiper>
+                    </div>
+                </div>
             </div>
 
         </div>

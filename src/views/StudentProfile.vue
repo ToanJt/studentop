@@ -5,7 +5,7 @@ import { getData } from '../server/api'
 
 const students = ref([]);
 const router = useRoute();
-const currentId = router.params.id - 1;
+const currentId = router.params.id;
 const student = reactive({
     id: Number,
     name: String,
@@ -27,27 +27,34 @@ function onTop() {
     window.scrollTo(top);
 }
 
-student.value = students.value[currentId];
+// student.value = students.value[currentId];
 
 onMounted(async () => {
     try {
         let res = await getData();
         students.value = res.data;
 
-        student.name = students.value[currentId].name;
-        student.id = students.value[currentId].id;
-        student.gender = students.value[currentId].gender;
-        student.studentId = students.value[currentId].studentId;
-        student.major = students.value[currentId].major;
-        student.course = students.value[currentId].course;
-        student.class = students.value[currentId].class;
-        student.avt = students.value[currentId].avt;
-        student.quote = students.value[currentId].quote;
-        student.dateOfBirth = students.value[currentId].dateOfBirth;
-        student.hometown = students.value[currentId].hometown;
-        student.hobbies = students.value[currentId].hobbies;
-        student.email = students.value[currentId].email;
-        student.phone = students.value[currentId].phone;
+        students.value.forEach((item) => {
+            if (item.id == currentId) {
+                console.log(student.id)
+                student.name = item.name;
+                student.id = item.id;
+                student.gender = item.gender;
+                student.studentId = item.studentId;
+                student.major = item.major;
+                student.course = item.course;
+                student.class = item.class;
+                student.avt = item.avt;
+                student.quote = item.quote;
+                student.dateOfBirth = item.dateOfBirth;
+                student.hometown = item.hometown;
+                student.hobbies = item.hobbies;
+                student.email = item.email;
+                student.phone = item.phone;
+                return;
+            }
+
+        })
 
         onTop();
     } catch (error) {
