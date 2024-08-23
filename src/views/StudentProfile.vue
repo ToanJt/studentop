@@ -2,6 +2,7 @@
 import { useRoute } from 'vue-router';
 import { computed, onMounted, reactive, ref } from 'vue';
 import { getData } from '../server/api'
+import studentList from '@/students';
 
 const students = ref([]);
 const router = useRoute();
@@ -31,10 +32,10 @@ function onTop() {
 
 onMounted(async () => {
     try {
-        let res = await getData();
-        students.value = res.data;
+        // let res = await getData();
+        // students.value = res.data;
 
-        students.value.forEach((item) => {
+        studentList.forEach((item) => {
             if (item.id == currentId) {
                 console.log(student.id)
                 student.name = item.name;

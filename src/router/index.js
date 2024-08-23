@@ -6,20 +6,6 @@ import Home from "@/views/Home.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    // {
-    //   path: "/student-list",
-    //   name: "student-list",
-    //   children: [
-    //     {
-    //       path: "",
-    //       component: StudentList,
-    //     },
-    //     {
-    //       path: "student/:id",
-    //       component: StudentProfile,
-    //     },
-    //   ],
-    // },
     {
       path: "/",
       name: "home",

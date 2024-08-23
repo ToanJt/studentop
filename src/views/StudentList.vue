@@ -6,14 +6,9 @@ import { getData } from '../server/api'
 import { Icon } from "@iconify/vue"
 const students = reactive([]);
 
-
-
-// const saveSearchValue = ref(localStorage.getItem('searchValue'));
+import studentList from "@/students";
 
 onMounted(async () => {
-    // if (saveSearchValue.value !== null) {
-    //     searchByName.value = saveSearchValue.value;
-    // }
     try {
         const res = await getData();
         students.splice(0, students.length, ...res.data);
@@ -37,7 +32,7 @@ const studentsFilter = computed(() => {
         || filterByCourse.value !== ''
         || filterByClass.value !== ''
         || filterByGender.value !== '') {
-        return students.filter(student => {
+        return studentList.filter(student => {
             return (KhongDau(student.name).toLowerCase().includes(KhongDau(searchByName.value).toLowerCase()))
                 && student.studentId.toLowerCase().includes(searchByStudentId.value.toLowerCase())
                 && (KhongDau(student.major).toLowerCase().includes(KhongDau(searchByMajor.value).toLowerCase())
@@ -47,7 +42,7 @@ const studentsFilter = computed(() => {
                 && student.gender.includes(filterByGender.value)
         })
     }
-    return students;
+    return studentList;
 })
 
 //Show filter 
